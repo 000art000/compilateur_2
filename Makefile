@@ -1,0 +1,45 @@
+
+MENHIR=menhir
+OCAMLC=ocamlc
+OCAMLLEX=ocamllex
+
+SOURCES = ast.ml parser.ml lexer.ml parser_etape3.ml lexer_etape3.ml main.ml
+
+OBJECTS = $(SOURCES:.ml=.cmo)
+
+.PHONY: clean all 
+
+all: parser
+
+parser: ast.cmo parser.cmi parser.cmo lexer.cmo parser_etape3.cmi parser_etape3.cmo lexer_etape3.cmo main.cmo 
+	$(OCAMLC) -o $@ $(OBJECTS)
+
+%.cmo: %.ml
+	$(OCAMLC) -c $< -o $@
+
+%.cmi: %.mli
+	$(OCAMLC) -c $< -o $@
+
+%.ml %.mli: %.mly
+	rm -f $(<:.mly=.conflicts)
+	$(MENHIR) -v --infer $<
+
+%.ml: %.mll
+	$(OCAMLLEX) $<
+
+parser.mly: ast.ml
+
+lexer.mll: parser.ml
+
+parser_etape3.mly : ast.ml
+
+lexer_etape3.mll: parser_etape3.ml
+
+clean:
+	rm -fr parser.mli parser.ml lexer.ml parser_etape3.mli parser_etape3.ml lexer_etape3.ml  *.cmo  *.cmi *~ *.automaton *.conflicts
+
+parser.cmo: ast.cmo parser.cmi
+lexer.cmo: parser.cmo
+parser_etape3.cmo: ast.cmo parser_etape3.cmi
+lexer_etape3.cmo: parser_etape3.cmo
+main.cmo: parser.cmo lexer.cmo parser_etape3.cmo lexer_etape3.cmo

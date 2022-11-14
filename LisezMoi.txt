@@ -1,0 +1,27 @@
+Binome:
+    HABLAL Abdelhamid 22118316
+    TOUKAL Raouf 22117878
+
+Compilation et exécution:
+    pour compiler il suffit d'executer make
+    pour executer il faut executer ./parser [option] < exemple.exp de sorte que:
+        -r: afficher l'automate
+        -i: interpreter un mot
+        -p: afficher l'automate dans la syntaxe de l'etape 3
+        -d: verifie si l'automate est deterministe
+        -id: interpreter un mot apres verification de l'automate
+        -R: afficher l'automate a partir d'un fichier de syntaxe d'etape 3
+        -I: interpreter un mot a partir d'un fichier de syntaxe d'etape 3
+        -P: afficher l'automate dans la syntaxe de l'etape 3 a partir d'un fichier de syntaxe d'etape 3
+        -D: verifie si l'automate est deterministe a partir d'un fichier de syntaxe d'etape 3
+        -ID: interpreter un mot apres verification de l'automate a partir d'un fichier de syntaxe d'etape 3
+    pour les options qui necissite un mot il faut executer ./parser [option] mot < exemple.exp
+
+réalisation:
+    pour la premiere partie et la deuxieme partie on a réalisé tout ce qui est demandé.
+    pour la troisieme partie on réalisé ce qui est demandé et on rajouter meme la recuperation de l'automate dans un ast
+        et donc on peut a partir de la syntaxe de l'etape 3 utiliser les fonctions de les etapes 1 et 2
+
+répartition:
+    pour le projet de grammaire on a préférer qu'on travaille ensemble sur toutes les fonctionalités sans répartire du travaille
+    (on habite dans la meme résidence c'est pour ca on peut travailler ensemble).
